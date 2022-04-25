@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Travailleur index{% endblock %}
+
+{% block body %}
+    <h1>Travailleur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Telph</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for travailleur in travailleurs %}
+            <tr>
+                <td>{{ travailleur.id }}</td>
+                <td>{{ travailleur.nom }}</td>
+                <td>{{ travailleur.prenom }}</td>
+                <td>{{ travailleur.email }}</td>
+                <td>{{ travailleur.telph }}</td>
+                <td>{{ travailleur.photo }}</td>
+                <td>
+                    <a href="{{ path('app_travailleur_show', {'id': travailleur.id}) }}">show</a>
+                    <a href="{{ path('app_travailleur_edit', {'id': travailleur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_travailleur_new') }}">Create new</a>
+{% endblock %}
